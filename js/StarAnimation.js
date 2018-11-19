@@ -9,6 +9,7 @@ export default class StarAnimation extends Canvas {
     super(_params)
 
     this.stars = []
+    this.starFlow = 5
 
     // init & animate
     this.loop = this.loop.bind(this)
@@ -17,8 +18,8 @@ export default class StarAnimation extends Canvas {
 
   getRandomPos() {
     const res = {
-      x: (this.screen.width / 2) + (Math.random()*50),
-      y: (this.screen.height / 2) + (Math.random()*50)
+      x: (this.screen.width / 2) + (Math.random()*20),
+      y: (this.screen.height / 2) + (Math.random()*20)
     }
     return res
   }
@@ -40,12 +41,13 @@ export default class StarAnimation extends Canvas {
 
   // We create a new star, add it to the stars[]
   drawStars() {
-    const star = new Star(
-      this.context,
-      this.getRandomPos()
-    )
-
-    this.stars.push(star)
+    for (let i = 0; i < this.starFlow; i++) {
+      const star = new Star(
+        this.context,
+        this.getRandomPos()
+      )
+      this.stars.push(star)
+    }
   }
 
   // We redraw all star in stars[]
@@ -57,6 +59,10 @@ export default class StarAnimation extends Canvas {
 
   // remove star after it disapear from screen
   removeOldStars() {
-    setTimeout(() => this.stars.shift(), 2500)
+    setTimeout(() => {
+      for (let i = 0; i < this.starFlow; i++) {
+        this.stars.shift()
+      }
+    }, 2500)
   }
 }
