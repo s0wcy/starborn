@@ -9,7 +9,7 @@ export default class Star {
 
     // our star properties
     this.star = {
-      radius: Math.random() * 2,
+      radius: Math.random()*2,
       color: '#FFF',
       x: positions.x,
       y: positions.y,
@@ -28,7 +28,7 @@ export default class Star {
     this.context.arc(
       this.star.x,
       this.star.y,
-      this.star.radius,
+      (this.star.radius ++) / 10,
       Math.PI * 2,
       false
     )
