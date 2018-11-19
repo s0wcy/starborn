@@ -1,47 +1,43 @@
-const $canvas = document.querySelector('canvas')
-const context = canvas.getContext('2d')
+export default class Canvas {
+  constructor() {
+    // init canvas & context
+    this.$canvas = document.querySelector('canvas')
+    this.context = this.$canvas.getContext('2d')
 
-// Star properties
-const star = {
-  radius: 10,
-  stars: [],
-  starsIndex: 0,
-  twoPI: Math.PI*2,
-  color: '#FFF'
-}
+    // define screen & mouse properties
+    this.screen = {
+      width: window.innerHeight,
+      height: window.innerHeight,
+    }
+    
+    this.cursor = {
+      x: 0,
+      y: 0
+    }
 
-class Star {
-  constructor(x, y, z) {
-    star.starsIndex++
-    star.stars[star.starsIndex] = this
-    this.id = star.starsIndex
-    // canvas draw
-    context.beginPath()
-    context.arc(x, y, star.radius, star.twoPI, false)
-    context.fillStyle = star.color
-    context.closePath()
-    context.fill()
+   // update canvas size & mouse position
+    window.addEventListener('resize', () => this.resize())
+    window.addEventListener('mousemove', e => this.updateCursor(e))
+
+    //initiate size of browser
+    this.resize()
+  }
+
+  resize() {
+    this.screen.width = window.innerWidth
+    this.screen.height = window.innerHeight
+
+    this.$canvas.width = this.screen.width
+    this.$canvas.height = this.screen.height
+  }
+
+  updateCursor(_e) {
+    this.cursor = {
+      x: _e.clientX,
+      y: _e.clientY
+    }
   }
 }
 
-// Screen size
-screenWidth = window.innerWidth
-screenHeight = window.innerHeight
-
-$canvas.width = screenWidth
-$canvas.height = screenHeight
-
-// Random positions
-let x, z = Math.random()*screenWidth
-let y = Math.random()*screenHeight
-
-// Animation loop
-const loop = () => {
-  requestAnimationFrame(loop)
-
-  context.fillStyle = '#000'
-  context.fillRect(0, 0, screenWidth, screenHeight)
-  new Star(x, y, z)
-}
-
-loop()
+// We already exported our class when we defined it !
+// Check Star.js to continue :y: !
