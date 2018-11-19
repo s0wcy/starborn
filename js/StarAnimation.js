@@ -18,8 +18,8 @@ export default class StarAnimation extends Canvas {
 
   getRandomPos() {
     const res = {
-      x: (this.screen.width / 2) + (Math.random()*20),
-      y: (this.screen.height / 2) + (Math.random()*20)
+      x: (this.screen.width / 2) + (Math.random()*10),
+      y: (this.screen.height / 2) + (Math.random()*10)
     }
     return res
   }

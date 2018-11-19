@@ -9,13 +9,17 @@ export default class Star {
 
     // our star properties
     this.star = {
-      radius: Math.random()*2,
-      color: '#FFF',
+      radius: Math.random(),
+      color: `hsl(
+        ${Math.floor(Math.random() * 360)},
+        ${Math.floor(Math.random() * (40 - 20 + 1) + 20)}%,
+        ${Math.floor(Math.random() * (100 - 70 + 1) + 70)}%
+      )`,
       x: positions.x,
       y: positions.y,
       speed: {
-        x: Math.cos(this.angle)*12,
-        y: Math.sin(this.angle)*12
+        x: Math.cos(this.angle)*7,
+        y: Math.sin(this.angle)*7
       }
     }
   }
@@ -28,7 +32,7 @@ export default class Star {
     this.context.arc(
       this.star.x,
       this.star.y,
-      (this.star.radius ++) / 10,
+      (this.star.radius ++) / 60,
       Math.PI * 2,
       false
     )
