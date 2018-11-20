@@ -12,14 +12,14 @@ export default class Star {
       radius: Math.random(),
       color: `hsl(
         ${Math.floor(Math.random() * 360)},
-        ${Math.floor(Math.random() * (40 - 20 + 1) + 20)}%,
+        ${Math.floor(Math.random() * (50 - 30 + 1) + 30)}%,
         ${Math.floor(Math.random() * (100 - 70 + 1) + 70)}%
       )`,
       x: positions.x,
       y: positions.y,
       speed: {
-        x: Math.cos(this.angle)*7,
-        y: Math.sin(this.angle)*7
+        x: Math.cos(this.angle)*18,
+        y: Math.sin(this.angle)*6
       }
     }
   }
@@ -32,11 +32,13 @@ export default class Star {
     this.context.arc(
       this.star.x,
       this.star.y,
-      (this.star.radius ++) / 60,
+      (this.star.radius ++) / 40,
       Math.PI * 2,
       false
     )
     this.context.fillStyle = this.star.color
+    //add tail effect
+    this.context.globalAlpha = 0.4
     this.context.closePath()
     this.context.fill()
   }
