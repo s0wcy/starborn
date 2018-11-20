@@ -9,7 +9,7 @@ export default class StarAnimation extends Canvas {
     super(_params)
 
     this.stars = []
-    this.starFlow = 5
+    this.starFlow = 2
 
     // init & animate
     this.loop = this.loop.bind(this)
@@ -29,6 +29,7 @@ export default class StarAnimation extends Canvas {
     window.requestAnimationFrame(this.loop)
     
     this.drawBg()
+    this.drawCircle()
     this.drawStars()
     this.updateStars()
     this.removeOldStars()
@@ -37,6 +38,16 @@ export default class StarAnimation extends Canvas {
   drawBg() {
     this.context.fillStyle = '#000'
     this.context.fillRect(0, 0, this.screen.width, this.screen.height)
+  }
+
+  drawCircle() {
+    this.context.arc(this.screen.width + 100, this.screen.height + 100, 20, 0, Math.PI*2, true)
+    this.context.stroke()
+    this.context.closePath()
+
+    this.context.arc(this.screen.width * (-1), this.screen.height * (-1), 20, 0, Math.PI * 2, true)
+    this.context.stroke()
+    this.context.closePath()
   }
 
   // We create a new star, add it to the stars[]
@@ -63,6 +74,6 @@ export default class StarAnimation extends Canvas {
       for (let i = 0; i < this.starFlow; i++) {
         this.stars.shift()
       }
-    }, 2500)
+    }, 4000)
   }
 }
