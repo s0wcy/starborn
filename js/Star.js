@@ -18,8 +18,8 @@ export default class Star {
       x: positions.x,
       y: positions.y,
       speed: {
-        x: Math.cos(this.angle)*18,
-        y: Math.sin(this.angle)*6
+        x: Math.cos(this.angle)*28,
+        y: Math.sin(this.angle)*16
       }
     }
   }
@@ -32,7 +32,7 @@ export default class Star {
     this.context.arc(
       this.star.x,
       this.star.y,
-      (this.star.radius ++) / 40,
+      (this.star.radius ++) / 10,
       Math.PI * 2,
       false
     )

@@ -1,4 +1,5 @@
 import StarAnimation from './StarAnimation.js'
-import CameraAnimation from './CameraAnimation.js'
+import Cosmos from './Cosmos.js'
 
 new StarAnimation()
+new Cosmos()

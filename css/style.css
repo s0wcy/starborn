@@ -5,3 +5,14 @@ html, body{
   height: 100vh;
   overflow: hidden;
 }
+
+.cosmos {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background-image: url('../medias/img/cosmos.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  transition: transform ease-out;
+  will-change: transform;
+}
