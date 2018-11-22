@@ -38,7 +38,6 @@ export default class Star {
   draw() {
     if(this.isSlow) {
       this.reduceSpeed(6)
-      console.log('reduced')
     }
     this.star.x += this.star.speed.x
     this.star.y += this.star.speed.y

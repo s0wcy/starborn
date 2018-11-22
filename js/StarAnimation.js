@@ -41,7 +41,10 @@ export default class StarAnimation extends Canvas {
     this.loop = this.loop.bind(this)
     this.loop()
     this.isSlow = false
-    setTimeout(() => this.isSlow = true, 2000)
+    setTimeout(() => {
+      this.isSlow = true
+      this.isGrowing = true
+    }, 2000)
   }
 
   getRandomPos() {

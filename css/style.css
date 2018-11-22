@@ -1,4 +1,5 @@
-html, body{
+html,
+body {
   padding: 0;
   margin: 0;
   width: 100vw;
@@ -12,7 +13,83 @@ html, body{
   z-index: 10;
 }
 
-#cosmos {
-  position: absolute;
+/**
+ * INTERFACE
+ */
+
+#interface {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  position: fixed;
   z-index: 15;
+  font-family: "Roboto";
+  font-weight: 200;
+}
+
+/* Start */
+
+.start {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 11rem;
+  height: 2.6rem;
+  position: relative;
+  color: #393939;
+  background-color: rgba(15, 15, 15, 1);
+  border-radius: 0.2rem;
+  cursor: pointer;
+  transition: 0.1s ease-out;
+}
+
+.start::before,
+.start::after {
+  content: '';
+  width: 100%;
+  height: 0.1rem;
+  background-color: #FFF;
+  position: absolute;
+  opacity: 0;
+}
+
+.start::before {
+  top: 0;
+}
+
+.start::after {
+  bottom: 0;
+}
+
+.start:hover {
+  width: 9rem;
+  color: #FFF;
+  background-color: rgba(15, 15, 15, 0);
+}
+
+.start:hover::before,
+.start:hover::after {
+  opacity: 1;
+}
+
+/* Lower */
+
+.lower {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  width: 100%;
+  height: 7rem;
+  position: absolute;
+  bottom: 0;
+  color: #FFF;
+}
+
+.lower-el {
+  margin: 0 3rem;
+  cursor: pointer;
 }

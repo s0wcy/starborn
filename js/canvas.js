@@ -1,8 +1,11 @@
 export default class Canvas {
   constructor() {
     // init canvas & context
-    this.$canvas = document.querySelector('canvas')
+    this.$canvas = document.querySelector('#canvas')
     this.context = this.$canvas.getContext('2d')
+
+    // interface actions
+    this.start = document.querySelector('.start')
 
     // define screen & mouse properties
     this.screen = {
