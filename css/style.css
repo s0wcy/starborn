@@ -75,6 +75,10 @@ body {
   opacity: 1;
 }
 
+.started {
+  display: none;
+}
+
 /* Lower */
 
 .lower {
@@ -90,6 +94,6 @@ body {
 }
 
 .lower-el {
-  margin: 0 3rem;
+  margin: 0 4rem;
   cursor: pointer;
 }

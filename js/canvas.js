@@ -4,9 +4,6 @@ export default class Canvas {
     this.$canvas = document.querySelector('#canvas')
     this.context = this.$canvas.getContext('2d')
 
-    // interface actions
-    this.start = document.querySelector('.start')
-
     // define screen & mouse properties
     this.screen = {
       width: window.innerHeight,
