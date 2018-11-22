@@ -1,7 +1,7 @@
 // This class will define the properties of each stars
 export default class Star {
   // we define the context in which our stars will appear & their poping position
-  constructor(context, positions) {
+  constructor(context, positions, isSlow) {
     this.context = context
 
     // random angle wich our star will navigate to
@@ -18,14 +18,28 @@ export default class Star {
       x: positions.x,
       y: positions.y,
       speed: {
-        x: Math.cos(this.angle)*28,
-        y: Math.sin(this.angle)*16
+        x: Math.cos(this.angle)*24,
+        y: Math.sin(this.angle)*12
       }
     }
+
+    // interractions
+    this.isSlow = isSlow
+  }
+
+  // speed adapt
+  reduceSpeed(value) {
+    const speed = this.star.speed
+    speed.x = speed.x / value
+    speed.y = speed.y / value
   }
 
   // we draw our stars on canvas
   draw() {
+    if(this.isSlow) {
+      this.reduceSpeed(6)
+      console.log('reduced')
+    }
     this.star.x += this.star.speed.x
     this.star.y += this.star.speed.y
     this.context.beginPath()
@@ -38,7 +52,7 @@ export default class Star {
     )
     this.context.fillStyle = this.star.color
     //add tail effect
-    this.context.globalAlpha = 0.4
+    this.context.globalAlpha = 0.2
     this.context.closePath()
     this.context.fill()
   }
