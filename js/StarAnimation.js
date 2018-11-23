@@ -1,12 +1,10 @@
 import Canvas from './Canvas.js' // importing our Canvas class
 import Star from './Star.js' // importing ou Star class
 
-// Creating a new class who is an extension of our class Canvas & Star,
 // This class will animate our stars
 export default class StarAnimation extends Canvas {
-  constructor(_params) {
-    // finish import Canvas class
-    super(_params)
+  constructor() {
+    super()
 
     // stars attributes
     this.stars = []
@@ -15,14 +13,18 @@ export default class StarAnimation extends Canvas {
     // init & animate
     this.loop = this.loop.bind(this)
     this.loop()
+
+    // interactions events
+    this.$start.addEventListener('click', () => { this.start() })
   }
 
+  // random pos for stars spawning
   getRandomPos() {
-    const res = {
+    const pos = {
       x: (this.screen.width / 2) + (Math.random()*10),
       y: (this.screen.height / 2) + (Math.random()*10)
     }
-    return res
+    return pos
   }
 
   // the loop function will keep animate each of our stars every frames
@@ -30,7 +32,6 @@ export default class StarAnimation extends Canvas {
     window.requestAnimationFrame(this.loop)
     
     this.drawBg()
-    //this.drawCosmos()
     this.drawStars()
     this.updateStars()
     this.removeOldStars()
@@ -46,9 +47,7 @@ export default class StarAnimation extends Canvas {
     for (let i = 0; i < this.starFlow; i++) {
       const star = new Star(
         this.context,
-        this.getRandomPos(),
-        this.isStarted,
-        this.isSlow
+        this.getRandomPos()
       )
       this.stars.push(star)
     }

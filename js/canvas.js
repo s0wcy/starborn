@@ -15,12 +15,31 @@ export default class Canvas {
       y: 0
     }
 
+    // DOM elements
+    this.$interface = document.querySelector('#interface')
+    this.$start = this.$interface.querySelector('.start')
+    this.$player = this.$interface.querySelector('.player')
+    this.$playerBtn = this.$player.querySelector('.on-off')
+    this.$story = this.$interface.querySelector('.story')
+    this.$continue = this.$interface.querySelector('.continue')
+
+    // Story triggers
+    this.isStarted = false
+    this.isSlow = false
+    this.step = 0
+
    // update canvas size & mouse position
     window.addEventListener('resize', () => this.resize())
     window.addEventListener('mousemove', e => this.updateCursor(e))
 
     //initiate size of browser
     this.resize()
+  }
+
+  start() {
+    this.isStarted = true
+    this.$start.classList.add('started')
+    this.isSlow = true
   }
 
   resize() {
