@@ -15,8 +15,17 @@ export default class StarAnimation extends Canvas {
     this.loop()
 
     // interactions events
-    this.$start.addEventListener('click', () => { this.start() })
+    this.$start.addEventListener('click', () => this.start())
+    this.$continue.addEventListener('click', () => {
+      this.step ++
+      console.log('step : ' + this.step)
+    })
   }
+
+  // //
+  // incStep() {
+  //   if(this.step < 4/)
+  // }
 
   // random pos for stars spawning
   getRandomPos() {
@@ -30,11 +39,33 @@ export default class StarAnimation extends Canvas {
   // the loop function will keep animate each of our stars every frames
   loop() {
     window.requestAnimationFrame(this.loop)
-    
-    this.drawBg()
-    this.drawStars()
-    this.updateStars()
-    this.removeOldStars()
+    if(this.isStarted) {
+      this.drawBg()
+      this.drawBornStar()
+      this.removeOldStars()
+      console.log('done')
+    } else {
+      this.drawBg()
+      this.drawStars()
+      this.updateStars()
+      this.removeOldStars()
+    }
+  }
+
+  drawBornStar() {
+    this.context.beginPath()
+    this.context.arc(
+      this.screen.width / 2,
+      this.screen.height / 2,
+      18,
+      Math.PI * 2,
+      false
+    )
+    this.context.fillStyle = '#ffffff'
+    this.context.shadowColor = '#ffffff'
+    this.context.shadowBlur = 15
+    this.context.closePath()
+    this.context.fill()
   }
 
   drawBg() {

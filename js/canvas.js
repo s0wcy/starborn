@@ -36,12 +36,14 @@ export default class Canvas {
     this.resize()
   }
 
+  // interaction functions
   start() {
     this.isStarted = true
     this.$start.classList.add('started')
     this.isSlow = true
   }
 
+  // reponsive functions
   resize() {
     this.screen.width = window.innerWidth
     this.screen.height = window.innerHeight
