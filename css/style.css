@@ -28,6 +28,7 @@ body {
   z-index: 15;
   font-family: "Roboto";
   font-weight: 200;
+  user-select: none;
 }
 
 /* Start */
@@ -43,7 +44,7 @@ body {
   background-color: rgba(15, 15, 15, 1);
   border-radius: 0.2rem;
   cursor: pointer;
-  transition: 0.1s ease-out;
+  transition: cubic-bezier(0.65, 0.01, 0.46, 1) 0.2s;
 }
 
 .start::before,

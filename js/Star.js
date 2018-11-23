@@ -1,7 +1,10 @@
+import Interface from "./Interface.js"
+
 // This class will define the properties of each stars
-export default class Star {
+export default class Star extends Interface {
   // we define the context in which our stars will appear & their poping position
-  constructor(context, positions, isSlow) {
+  constructor(context, positions) {
+    super()
     this.context = context
 
     // random angle wich our star will navigate to
@@ -12,8 +15,8 @@ export default class Star {
       radius: Math.random(),
       color: `hsl(
         ${Math.floor(Math.random() * 360)},
-        ${Math.floor(Math.random() * (50 - 30 + 1) + 30)}%,
-        ${Math.floor(Math.random() * (100 - 70 + 1) + 70)}%
+        ${this.randCol(50,30)}%,
+        ${this.randCol(100, 70)}%
       )`,
       x: positions.x,
       y: positions.y,
@@ -22,9 +25,6 @@ export default class Star {
         y: Math.sin(this.angle)*12
       }
     }
-
-    // interractions
-    this.isSlow = isSlow
   }
 
   // speed adapt
@@ -34,9 +34,14 @@ export default class Star {
     speed.y = speed.y / value
   }
 
+  // random color
+  randCol(max, min) {
+    return Math.floor(Math.random() * (max - min + 1) + min)
+  }
+
   // we draw our stars on canvas
   draw() {
-    if(this.isSlow) {
+    if(this.isStarted){
       this.reduceSpeed(6)
     }
     this.star.x += this.star.speed.x
