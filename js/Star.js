@@ -1,7 +1,7 @@
 // This class will define the properties of each stars
 export default class Star {
   // we define the context in which our stars will appear & their poping position
-  constructor(_context, _positions, _isStarted, _lightness, _size) {
+  constructor(_context, _positions, _isStarted, _lightness, _size, _step) {
     this.context = _context
 
     this.isStarted = _isStarted
@@ -28,10 +28,21 @@ export default class Star {
     this.bornStar = {
       radius: _size,
       color: `hsl(
-        250,
+        ${this.colorStep(_step)},
         80%,
         ${_lightness}%
       )`
+    }
+  }
+
+  // color change for each steps
+  colorStep(_step) {
+    if(_step === 0) {
+      return 250
+    } else if (_step === 1) {
+      return 50
+    } else {
+      return 360
     }
   }
 

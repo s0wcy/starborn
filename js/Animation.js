@@ -9,7 +9,8 @@ export default class StarAnimation extends Canvas {
     // interactions
     this.isStarted = false
     this.step = {
-      max: 0,
+      max: 2,
+      min: 0,
       current: 0
     }
 
@@ -19,11 +20,7 @@ export default class StarAnimation extends Canvas {
 
     // interactions events
     this.$start.addEventListener('click', () => this.start())
-    this.$continue.addEventListener('click', () => {
-      console.log('step : ' + this.step)
-      this.step ++
-      console.log('step : ' + this.step)
-    })
+    this.$continue.addEventListener('click', () => this.continue())
 
     // init & animate
     this.loop = this.loop.bind(this)
@@ -46,11 +43,13 @@ export default class StarAnimation extends Canvas {
     return ratio
   }
 
-  // ++ step when clicking on continue
-  continue(ask) {
-    if(!ask) {
-      for (let i = 0; i < this.step.max; i++) {
-        this.step.current++
+  // ++ step when clicking on continue, if _ask === true, then just return current step
+  continue(_ask) {
+    if(!_ask) {
+      if (this.step.current < this.step.max) {
+        this.step.current ++
+      } else {
+        this.step.current = this.step.min
       }
     }
     return this.step.current
@@ -89,7 +88,8 @@ export default class StarAnimation extends Canvas {
         this.getRandomPos(),
         this.isStarted,
         this.mouseRatio(60).toString(),
-        this.mouseRatio(100)
+        this.mouseRatio(100),
+        this.continue(true)
       )
       this.stars.push(star)
     }
