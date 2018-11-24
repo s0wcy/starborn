@@ -39,7 +39,7 @@ export default class Star {
   colorStep(_step) {
     if(_step === 0) {
       return 250
-    } else if (_step === 1) {
+    } else if(_step === 1) {
       return 50
     } else {
       return 360

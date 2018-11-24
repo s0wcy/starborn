@@ -55,6 +55,17 @@ export default class StarAnimation extends Canvas {
     return this.step.current
   }
 
+  // gives back the max size of born star for each steps
+  sizeStep(_step) {
+    if(_step === 0) {
+      return 50
+    } else if(_step === 1) {
+      return 150
+    } else {
+      return 230
+    }
+  }
+
   // random pos for stars spawning
   getRandomPos() {
     const pos = {
@@ -71,8 +82,30 @@ export default class StarAnimation extends Canvas {
     this.drawStars()
     this.updateStars()
     this.removeOldStars()
+    this.drawCursor()
   }
 
+  drawCursor() {
+    this.context.beginPath()
+    this.context.arc(
+      this.cursor.x,
+      this.cursor.y,
+      8,
+      0,
+      Math.PI*2,
+      false
+    )
+    // this.context.globalAlpha = 1
+    this.context.save()
+    this.context.strokeStyle = '#fff'
+    this.context.shadowColor = '#fff'
+    this.context.shadowBlur = '#fff'
+    this.context.closePath()
+    this.context.stroke()
+    this.context.restore()
+  }
+
+  // redraw our background and keep it clean black
   drawBg() {
     this.context.restore()
     this.context.fillStyle = '#000'
@@ -88,7 +121,7 @@ export default class StarAnimation extends Canvas {
         this.getRandomPos(),
         this.isStarted,
         this.mouseRatio(60).toString(),
-        this.mouseRatio(100),
+        this.mouseRatio(this.sizeStep(this.continue(true))),
         this.continue(true)
       )
       this.stars.push(star)
