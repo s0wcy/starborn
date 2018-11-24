@@ -11,11 +11,16 @@
 <body>
     <div id="interface">
         <div class="start">Start the experience</div>
-        <div class="lower">
+        <div class="lower lower-off">
             <div class="lower-el player">
                 <div class="on-off">Ø</div>
             </div>
-            <div class="lower-el story"></div>
+            <div class="story">
+                <div class="story-interaction">
+                    <input type="range" min="0" max="10" step="0.1" value="0" class="selector">
+                </div>
+                <div class="story-text"><span>"</span class="story-text-inner"><span>"</span></div>
+            </div>
             <div class="lower-el continue">Continue</div>
         </div>
     </div>

@@ -18,6 +18,7 @@ export default class Canvas {
     // DOM elements
     this.$interface = document.querySelector('#interface')
     this.$start = this.$interface.querySelector('.start')
+    this.$lower = this.$interface.querySelector('.lower')
     this.$player = this.$interface.querySelector('.player')
     this.$playerBtn = this.$player.querySelector('.on-off')
     this.$story = this.$interface.querySelector('.story')

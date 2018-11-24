@@ -1,10 +1,11 @@
 // This class will define the properties of each stars
 export default class Star {
   // we define the context in which our stars will appear & their poping position
-  constructor(context, positions, isStarted) {
-    this.context = context
+  constructor(_context, _positions, _isStarted) {
+    this.context = _context
 
-    this.isStarted = isStarted
+    this.isStarted = _isStarted
+    this.colorTab = ['blue', 'yellow', 'red']
 
     // random angle wich our star will navigate to
     this.angle = Math.random() * Math.PI * 3
@@ -17,8 +18,8 @@ export default class Star {
         ${this.randIn(50,30)}%,
         ${this.randIn(100, 70)}%
       )`,
-      x: positions.x,
-      y: positions.y,
+      x: _positions.x,
+      y: _positions.y,
       speed: {
         x: Math.cos(this.angle)*24,
         y: Math.sin(this.angle)*12
@@ -31,15 +32,19 @@ export default class Star {
     }
   }
 
+  // change color and 
+
   // speed adapt to create our star
-  reduceSpeed(value) {
-    this.star.speed.x = this.star.speed.x / value
-    this.star.speed.y = this.star.speed.y / value
+  reduceSpeed(_value) {
+    this.star.speed = {
+      x: this.star.speed.x / _value,
+      y: this.star.speed.y / _value
+    }
   }
 
   // random number between 2 values
-  randIn(max, min) {
-    return Math.floor(Math.random() * (max - min + 1) + min)
+  randIn(_max, _min) {
+    return Math.floor(Math.random() * (_max - _min + 1) + _min)
   }
 
   // we draw our stars on canvas
@@ -60,7 +65,8 @@ export default class Star {
       this.context.fill()
     }
     
-    drawBornStar() {
+    // draw the born star 
+    drawBornStar(_age) {
       this.reduceSpeed(6)
       this.context.beginPath()
       this.context.arc(

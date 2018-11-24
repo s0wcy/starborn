@@ -31,6 +31,7 @@ export default class StarAnimation extends Canvas {
   start() {
     this.isStarted = true
     this.$start.classList.add('started')
+    this.$lower.classList.remove('lower-off')
     for (const _star of this.stars) {
       _star.isStarted = true
     }
@@ -55,8 +56,10 @@ export default class StarAnimation extends Canvas {
   }
 
   drawBg() {
+    this.context.restore()
     this.context.fillStyle = '#000'
     this.context.fillRect(0, 0, this.screen.width, this.screen.height)
+    this.context.save()
   }
 
   // We create a new star, add it to the stars[]
