@@ -23,24 +23,11 @@ export default class Canvas {
     this.$story = this.$interface.querySelector('.story')
     this.$continue = this.$interface.querySelector('.continue')
 
-    // Story triggers
-    this.isStarted = false
-    this.isSlow = false
-    this.step = 0
-
-   // update canvas size & mouse position
+    // update canvas size & mouse position
     window.addEventListener('resize', () => this.resize())
-    window.addEventListener('mousemove', e => this.updateCursor(e))
 
     //initiate size of browser
     this.resize()
-  }
-
-  // interaction functions
-  start() {
-    this.isStarted = true
-    this.$start.classList.add('started')
-    this.isSlow = true
   }
 
   // reponsive functions
@@ -50,13 +37,6 @@ export default class Canvas {
 
     this.$canvas.width = this.screen.width
     this.$canvas.height = this.screen.height
-  }
-
-  updateCursor(_e) {
-    this.cursor = {
-      x: _e.clientX,
-      y: _e.clientY
-    }
   }
 }
 

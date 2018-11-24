@@ -1,3 +1,5 @@
-import StarAnimation from './StarAnimation.js'
+import Animation from './Animation.js'
+import Mouse from './Mouse.js';
 
-new StarAnimation()
+new Animation()
+new Mouse()

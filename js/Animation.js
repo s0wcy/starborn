@@ -6,26 +6,35 @@ export default class StarAnimation extends Canvas {
   constructor() {
     super()
 
+    // interactions
+    this.isStarted = false
+    this.step = 0
+
     // stars attributes
     this.stars = []
-    this.starFlow = 5
-    
-    // init & animate
-    this.loop = this.loop.bind(this)
-    this.loop()
+    this.starFlow = 2
 
     // interactions events
     this.$start.addEventListener('click', () => this.start())
     this.$continue.addEventListener('click', () => {
+      console.log('step : ' + this.step)
       this.step ++
       console.log('step : ' + this.step)
     })
+
+    // init & animate
+    this.loop = this.loop.bind(this)
+    this.loop()
   }
 
-  // //
-  // incStep() {
-  //   if(this.step < 4/)
-  // }
+  // interaction functions
+  start() {
+    this.isStarted = true
+    this.$start.classList.add('started')
+    for (const _star of this.stars) {
+      _star.isStarted = true
+    }
+  }
 
   // random pos for stars spawning
   getRandomPos() {
@@ -39,33 +48,10 @@ export default class StarAnimation extends Canvas {
   // the loop function will keep animate each of our stars every frames
   loop() {
     window.requestAnimationFrame(this.loop)
-    if(this.isStarted) {
-      this.drawBg()
-      this.drawBornStar()
-      this.removeOldStars()
-      console.log('done')
-    } else {
-      this.drawBg()
-      this.drawStars()
-      this.updateStars()
-      this.removeOldStars()
-    }
-  }
-
-  drawBornStar() {
-    this.context.beginPath()
-    this.context.arc(
-      this.screen.width / 2,
-      this.screen.height / 2,
-      18,
-      Math.PI * 2,
-      false
-    )
-    this.context.fillStyle = '#ffffff'
-    this.context.shadowColor = '#ffffff'
-    this.context.shadowBlur = 15
-    this.context.closePath()
-    this.context.fill()
+    this.drawBg()
+    this.drawStars()
+    this.updateStars()
+    this.removeOldStars()
   }
 
   drawBg() {
@@ -78,7 +64,8 @@ export default class StarAnimation extends Canvas {
     for (let i = 0; i < this.starFlow; i++) {
       const star = new Star(
         this.context,
-        this.getRandomPos()
+        this.getRandomPos(),
+        this.isStarted
       )
       this.stars.push(star)
     }
@@ -87,7 +74,12 @@ export default class StarAnimation extends Canvas {
   // We redraw all star in stars[]
   updateStars() {
     for (const _star of this.stars) {
-      _star.draw()
+      if(!this.isStarted) {
+        _star.draw()
+      } else {
+        this.drawBg()
+        _star.drawBornStar()
+      }
     }
   }
 
@@ -97,6 +89,6 @@ export default class StarAnimation extends Canvas {
       for (let i = 0; i < this.starFlow; i++) {
         this.stars.shift()
       }
-    }, 2500)
+    }, 1000)
   }
 }
