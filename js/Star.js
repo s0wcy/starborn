@@ -1,11 +1,10 @@
 // This class will define the properties of each stars
 export default class Star {
   // we define the context in which our stars will appear & their poping position
-  constructor(_context, _positions, _isStarted) {
+  constructor(_context, _positions, _isStarted, _lightness, _size) {
     this.context = _context
 
     this.isStarted = _isStarted
-    this.colorTab = ['blue', 'yellow', 'red']
 
     // random angle wich our star will navigate to
     this.angle = Math.random() * Math.PI * 3
@@ -27,12 +26,14 @@ export default class Star {
     }
 
     this.bornStar = {
-      radius: 18,
-      color: '#ffffff'
+      radius: _size,
+      color: `hsl(
+        250,
+        80%,
+        ${_lightness}%
+      )`
     }
   }
-
-  // change color and 
 
   // speed adapt to create our star
   reduceSpeed(_value) {

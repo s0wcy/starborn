@@ -8,7 +8,10 @@ export default class StarAnimation extends Canvas {
 
     // interactions
     this.isStarted = false
-    this.step = 0
+    this.step = {
+      max: 0,
+      current: 0
+    }
 
     // stars attributes
     this.stars = []
@@ -35,6 +38,22 @@ export default class StarAnimation extends Canvas {
     for (const _star of this.stars) {
       _star.isStarted = true
     }
+  }
+
+  // mouse/screen ratio used to change color & size
+  mouseRatio(_step) {
+    let ratio = (this.cursor.x / this.screen.width) * _step
+    return ratio
+  }
+
+  // ++ step when clicking on continue
+  continue(ask) {
+    if(!ask) {
+      for (let i = 0; i < this.step.max; i++) {
+        this.step.current++
+      }
+    }
+    return this.step.current
   }
 
   // random pos for stars spawning
@@ -68,7 +87,9 @@ export default class StarAnimation extends Canvas {
       const star = new Star(
         this.context,
         this.getRandomPos(),
-        this.isStarted
+        this.isStarted,
+        this.mouseRatio(60).toString(),
+        this.mouseRatio(100)
       )
       this.stars.push(star)
     }

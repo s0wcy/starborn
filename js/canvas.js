@@ -26,6 +26,12 @@ export default class Canvas {
 
     // update canvas size & mouse position
     window.addEventListener('resize', () => this.resize())
+    window.addEventListener('mousemove', (_e) => {
+      this.cursor = {
+        x: _e.clientX,
+        y: _e.clientY
+      }
+    })
 
     //initiate size of browser
     this.resize()
