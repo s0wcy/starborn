@@ -24,6 +24,11 @@ export default class Star {
         y: Math.sin(this.angle)*12
       }
     }
+
+    this.bornStar = {
+      radius: 18,
+      color: '#ffffff'
+    }
   }
 
   // speed adapt to create our star
@@ -50,6 +55,7 @@ export default class Star {
       false)
       this.context.fillStyle = this.star.color
       this.context.globalAlpha = 0.2
+      this.context.shadowColor = this.star.color
       this.context.closePath()
       this.context.fill()
     }
@@ -60,12 +66,17 @@ export default class Star {
       this.context.arc(
         this.star.x,
         this.star.y,
-        10,
+        this.bornStar.radius,
         Math.PI * 2,
         false
         )
-      this.context.fillStyle = '#ffffff'
+      this.context.globalAlpha = 0.2
+      this.context.save()
+      this.context.shadowColor = this.bornStar.color
+      this.context.shadowBlur = 15
+      this.context.fillStyle = this.bornStar.color
       this.context.closePath()
       this.context.fill()
+      this.context.restore()
     }
   }

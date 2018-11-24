@@ -89,6 +89,6 @@ export default class StarAnimation extends Canvas {
       for (let i = 0; i < this.starFlow; i++) {
         this.stars.shift()
       }
-    }, 1000)
+    }, 1200)
   }
 }
