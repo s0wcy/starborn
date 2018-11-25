@@ -85,6 +85,7 @@ export default class StarAnimation extends Canvas {
     this.drawCursor()
   }
 
+  // the mouse cursor
   drawCursor() {
     this.context.beginPath()
     this.context.arc(
