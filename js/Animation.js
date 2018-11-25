@@ -8,6 +8,7 @@ export default class StarAnimation extends Canvas {
 
     // interactions
     this.isStarted = false
+    this.isMuted = true
     this.isLightspeed = true
     this.step = {
       max: 8,
@@ -23,6 +24,7 @@ export default class StarAnimation extends Canvas {
     // interactions events
     this.$start.addEventListener('click', () => this.start())
     this.$continue.addEventListener('click', () => this.continue())
+    this.$playerBtn.addEventListener('click', () => this.mute(this.isMuted))
 
     // init & animate
     this.loop = this.loop.bind(this)
@@ -32,7 +34,7 @@ export default class StarAnimation extends Canvas {
   // interaction functions
   start() {
     this.isStarted = true
-    this.$start.classList.add('started')
+    this.$upper.classList.add('started')
     this.$lower.classList.remove('lower-off')
     for (const _star of this.stars) {
       _star.isStarted = true
@@ -50,7 +52,11 @@ export default class StarAnimation extends Canvas {
   continue(_ask) {
     if(!_ask) {
       if (this.step.current < this.step.max) {
+        this.$story.classList.add('text-transition')
         this.step.current ++
+        setTimeout(() => {
+          this.$story.classList.remove('text-transition')
+        }, 400)
       } else if(this.restart) {
         this.step.current = this.step.min
       } else {
@@ -86,7 +92,7 @@ export default class StarAnimation extends Canvas {
 
   setStory() {
     this.$story.style.opacity = '1'
-    this.$story.innerHTML = this.storyStep(this.continue(true))
+    this.$storyInner.innerHTML = this.storyStep(this.continue(true))
   }
 
   // gives back the max size of born star for each steps
@@ -98,6 +104,17 @@ export default class StarAnimation extends Canvas {
         return 150
       case 6:
         return 230
+    }
+  }
+
+  // mute
+  mute(_isMuted) {
+    if(_isMuted) {
+      this.isMuted = false
+      this.$playerBtn.innerHTML = 'Ø'
+    } else {
+      this.isMuted = true
+      this.$playerBtn.innerHTML = 'O'
     }
   }
 
