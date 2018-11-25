@@ -69,13 +69,14 @@
   transition: cubic-bezier(0.65, 0.01, 0.46, 1) 0.4s;
 }
 
-.story-btn {
+.story-submit {
   margin-left: 1rem;
   width: 4rem;
   height: 100%;
   background-color: rgba(15, 15, 15, 1);
-  color: #fff;
   border: 0 solid transparent;
+  outline: none;
+  color: #fff;
 }
 
 .input-off {

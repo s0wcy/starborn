@@ -37,10 +37,12 @@ export default class StarAnimation extends Canvas {
   // interaction functions
   start() {
     this.isStarted = true
-    this.$upper.classList.add('started')
+    this.$startContainer.classList.add('started')
+    this.$logo.classList.add('started')
     this.$lower.classList.remove('lower-off')
     this.isMuted = false
-    this.sound.volume = 0.1
+    this.sound.volume = 0.3
+    this.sound.loop = true
     this.sound.play()
     for (const _star of this.stars) {
       _star.isStarted = true
@@ -90,10 +92,13 @@ export default class StarAnimation extends Canvas {
       case 6:
         return this.story.redStar
       case 7:
+        this.isLightspeed = true
         return this.story.startEnd
       case 8:
         return this.story.end
       case 9:
+        this.$logo.classList.remove('started')
+        this.$logo.classList.add('end-logo')
         return 'Thanks for exploring my web experimentation, stay curious !'
     }
   }

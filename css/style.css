@@ -55,7 +55,8 @@ body {
   height: 10rem;
   background-image: url("../src/medias/img/logo.svg");
   background-repeat: no-repeat;
-  background-size: cover; }
+  background-size: cover;
+  transition: cubic-bezier(0.65, 0.01, 0.46, 1) 0.4s; }
 
 .start-container {
   display: flex;
@@ -106,6 +107,10 @@ body {
 .started {
   visibility: hidden;
   opacity: 0; }
+
+.end-logo {
+  visibility: visible;
+  opacity: 1; }
 
 /* Lower */
 .lower {
@@ -168,13 +173,14 @@ body {
   color: #fff;
   transition: cubic-bezier(0.65, 0.01, 0.46, 1) 0.4s; }
 
-.story-btn {
+.story-submit {
   margin-left: 1rem;
   width: 4rem;
   height: 100%;
   background-color: #0f0f0f;
-  color: #fff;
-  border: 0 solid transparent; }
+  border: 0 solid transparent;
+  outline: none;
+  color: #fff; }
 
 .input-off {
   display: none; }
