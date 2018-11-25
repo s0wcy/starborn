@@ -187,4 +187,7 @@ body {
 .input-off {
   display: none; }
 
+.continue {
+  transition: cubic-bezier(0.65, 0.01, 0.46, 1) 0.4s; }
+
 /*# sourceMappingURL=style.css.map */

@@ -99,6 +99,7 @@ export default class StarAnimation extends Canvas {
       case 8:
         return this.story.end
       case 9:
+        this.$continue.style.opacity = 0
         this.$logo.classList.remove('started')
         this.$logo.classList.add('end-logo')
         return 'Thanks for exploring my web experimentation, stay curious !'

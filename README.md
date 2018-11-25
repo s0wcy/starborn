@@ -17,7 +17,7 @@ You can also use **serve** command to emulate your server quickly : `npm install
 
 Also, you'll need a **[SASS compiler](http://koala-app.com/)** to edit scss files.
 
-### Some details
+### How it works ?
 
 This javascript canvas page use class structure.
 I call **Star.js** with **Animation.js** to create each elements you'll see on canvas.
