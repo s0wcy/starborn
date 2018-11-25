@@ -36,8 +36,8 @@ export default class Canvas {
     this.$logo = this.$interface.querySelector('.logo')
 
     // story narration
-    this.name = 'Gargantua'
     this.story = {}
+    this.name = 'Gargantua'
     this.story.intro = 'Here we are, in the deepness of our universe. Where the spatial dust dance with the gaz to create life. Not our vision of life. A life that is among our. The one who has bring life on earth for example. The life of a star.',
     this.story.nameStar = 'How would you like to name our star ?',
     this.story.nameConfirm = `Fine, let’s find out what will look the life of ${this.name} !`,
@@ -46,8 +46,6 @@ export default class Canvas {
     this.story.redStar = `Finally, after finishing her expansion and combustion, ${this.name} will be a red giant. That’s where her life pretty much end. But her death will be, as her life was, spectacular.`,
     this.story.startEnd = `${this.name} is now bigger & colder than she has never been in her life. Her time is running out and some beautiful gravity trick will oppere. ${this.name} is going to become what we call a gravitational singularity.`,
     this.story.end = `${this.name}'s mass will exeed more than 130 times the mass of our sun. And she’ll be almost invisible for humans eyes. We’ll only see the light of the others stars she’s absorbing.`
-
-    this.$storySubmit.addEventListener('click', () => this.name = this.$storyValue.value)
 
     // update canvas size & mouse position
     window.addEventListener('resize', () => this.resize())

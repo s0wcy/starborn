@@ -28,6 +28,7 @@ export default class StarAnimation extends Canvas {
     if(!this.isMuted) {
       this.sound.addEventListener('ended', () => this.sound.play()) 
     }
+    this.$storySubmit.addEventListener('click', () => this.name = this.$storyValue.value)
 
     // init & animate
     this.loop = this.loop.bind(this)
@@ -74,6 +75,7 @@ export default class StarAnimation extends Canvas {
     return this.step.current
   }
 
+  // this will define what will be narrated for each steps of our story
   storyStep(_step) {
     switch (_step) {
       case 1:
@@ -103,6 +105,7 @@ export default class StarAnimation extends Canvas {
     }
   }
 
+  // this will set the right narration using storyStep()
   setStory() {
     this.$story.style.opacity = '1'
     this.$storyInner.innerHTML = this.storyStep(this.continue(true))
