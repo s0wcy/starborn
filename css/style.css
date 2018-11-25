@@ -1,3 +1,4 @@
+@charset "UTF-8";
 @font-face {
   font-family: robotoBold;
   src: url(../src/medias/fonts/Roboto-Bold.ttf); }
@@ -17,7 +18,8 @@ body {
   position: relative;
   user-select: none;
   cursor: none;
-  transition: cubic-bezier(0.65, 0.01, 0.46, 1) 0.4s; }
+  transition: cubic-bezier(0.65, 0.01, 0.46, 1) 0.4s;
+  /*background-color: to-major-tom 🚀*/ }
 
 body {
   opacity: 0; }
