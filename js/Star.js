@@ -1,10 +1,8 @@
 // This class will define the properties of each stars
 export default class Star {
   // we define the context in which our stars will appear & their poping position
-  constructor(_context, _positions, _isStarted, _lightness, _size, _step) {
+  constructor(_context, _positions, _lightness, _size, _step) {
     this.context = _context
-
-    this.isStarted = _isStarted
 
     // random angle wich our star will navigate to
     this.angle = Math.random() * Math.PI * 3
@@ -37,12 +35,13 @@ export default class Star {
 
   // color change for each steps
   colorStep(_step) {
-    if(_step === 0) {
-      return 250
-    } else if(_step === 1) {
-      return 50
-    } else {
-      return 360
+    switch (_step) {
+      case 4:
+        return 250
+      case 5:
+        return 50
+      case 6:
+        return 360
     }
   }
 
@@ -77,24 +76,24 @@ export default class Star {
       this.context.fill()
     }
     
-    // draw the born star 
-    drawBornStar(_age) {
-      this.reduceSpeed(6)
-      this.context.beginPath()
-      this.context.arc(
-        this.star.x,
-        this.star.y,
-        this.bornStar.radius,
-        Math.PI * 2,
-        false
-        )
-      this.context.globalAlpha = 0.2
-      this.context.save()
-      this.context.shadowColor = this.bornStar.color
-      this.context.shadowBlur = 15
-      this.context.fillStyle = this.bornStar.color
-      this.context.closePath()
-      this.context.fill()
-      this.context.restore()
-    }
+  // draw the born star 
+  drawBornStar(_age) {
+    this.reduceSpeed(6)
+    this.context.beginPath()
+    this.context.arc(
+      this.star.x,
+      this.star.y,
+      this.bornStar.radius,
+      Math.PI * 2,
+      false
+      )
+    this.context.globalAlpha = 0.2
+    this.context.save()
+    this.context.shadowColor = this.bornStar.color
+    this.context.shadowBlur = 15
+    this.context.fillStyle = this.bornStar.color
+    this.context.closePath()
+    this.context.fill()
+    this.context.restore()
   }
+}

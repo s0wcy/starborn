@@ -8,15 +8,17 @@ export default class StarAnimation extends Canvas {
 
     // interactions
     this.isStarted = false
+    this.isLightspeed = true
     this.step = {
-      max: 2,
+      max: 8,
       min: 0,
       current: 0
     }
+    this.restart = false
 
     // stars attributes
     this.stars = []
-    this.starFlow = 2
+    this.starFlow = 3
 
     // interactions events
     this.$start.addEventListener('click', () => this.start())
@@ -35,6 +37,7 @@ export default class StarAnimation extends Canvas {
     for (const _star of this.stars) {
       _star.isStarted = true
     }
+    this.continue()
   }
 
   // mouse/screen ratio used to change color & size
@@ -48,21 +51,53 @@ export default class StarAnimation extends Canvas {
     if(!_ask) {
       if (this.step.current < this.step.max) {
         this.step.current ++
-      } else {
+      } else if(this.restart) {
         this.step.current = this.step.min
+      } else {
+        this.step.current = this.step.max + 1
       }
     }
     return this.step.current
   }
 
+  storyStep(_step) {
+    switch (_step) {
+      case 9:
+        return 'Thanks for exploring my web experimentation, stay curious !'
+      case 1:
+        return this.story.intro
+      case 2:
+        return this.story.nameStar
+      case 3:
+        return this.story.nameConfirm
+      case 4:
+        this.isLightspeed = false
+        return this.story.blueStar
+      case 5:
+        return this.story.yellowStar
+      case 6:
+        return this.story.redStar
+      case 7:
+        return this.story.startEnd
+      case 8:
+        return this.story.end
+    }
+  }
+
+  setStory() {
+    this.$story.style.opacity = '1'
+    this.$story.innerHTML = this.storyStep(this.continue(true))
+  }
+
   // gives back the max size of born star for each steps
   sizeStep(_step) {
-    if(_step === 0) {
-      return 50
-    } else if(_step === 1) {
-      return 150
-    } else {
-      return 230
+    switch (_step) {
+      case 4:
+        return 50
+      case 5:
+        return 150
+      case 6:
+        return 230
     }
   }
 
@@ -82,6 +117,7 @@ export default class StarAnimation extends Canvas {
     this.drawStars()
     this.updateStars()
     this.removeOldStars()
+    this.setStory()
     this.drawCursor()
   }
 
@@ -120,7 +156,6 @@ export default class StarAnimation extends Canvas {
       const star = new Star(
         this.context,
         this.getRandomPos(),
-        this.isStarted,
         this.mouseRatio(60).toString(),
         this.mouseRatio(this.sizeStep(this.continue(true))),
         this.continue(true)
@@ -132,11 +167,11 @@ export default class StarAnimation extends Canvas {
   // We redraw all star in stars[]
   updateStars() {
     for (const _star of this.stars) {
-      if(!this.isStarted) {
-        _star.draw()
-      } else {
+      if(!this.isLightspeed) {
         this.drawBg()
         _star.drawBornStar()
+      } else {
+        _star.draw()
       }
     }
   }
