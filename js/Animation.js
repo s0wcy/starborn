@@ -1,5 +1,5 @@
 import Canvas from './Canvas.js' // importing our Canvas class
-import Star from './Star.js' // importing ou Star class
+import Star from './Star.js' // importing our star constructor
 
 // This class will animate our stars
 export default class StarAnimation extends Canvas {
@@ -8,7 +8,7 @@ export default class StarAnimation extends Canvas {
 
     // interactions
     this.isStarted = false
-    this.isMuted = true
+    this.isMuted = false
     this.isLightspeed = true
     this.step = {
       max: 8,
@@ -25,6 +25,9 @@ export default class StarAnimation extends Canvas {
     this.$start.addEventListener('click', () => this.start())
     this.$continue.addEventListener('click', () => this.continue())
     this.$playerBtn.addEventListener('click', () => this.mute(this.isMuted))
+    if(!this.isMuted) {
+      this.sound.addEventListener('ended', () => this.sound.play()) 
+    }
 
     // init & animate
     this.loop = this.loop.bind(this)
@@ -36,6 +39,9 @@ export default class StarAnimation extends Canvas {
     this.isStarted = true
     this.$upper.classList.add('started')
     this.$lower.classList.remove('lower-off')
+    this.isMuted = false
+    this.sound.volume = 0.1
+    this.sound.play()
     for (const _star of this.stars) {
       _star.isStarted = true
     }
@@ -68,13 +74,13 @@ export default class StarAnimation extends Canvas {
 
   storyStep(_step) {
     switch (_step) {
-      case 9:
-        return 'Thanks for exploring my web experimentation, stay curious !'
       case 1:
         return this.story.intro
       case 2:
+        this.$storyInput.classList.remove('input-off')
         return this.story.nameStar
       case 3:
+        this.$storyInput.classList.add('input-off')
         return this.story.nameConfirm
       case 4:
         this.isLightspeed = false
@@ -87,6 +93,8 @@ export default class StarAnimation extends Canvas {
         return this.story.startEnd
       case 8:
         return this.story.end
+      case 9:
+        return 'Thanks for exploring my web experimentation, stay curious !'
     }
   }
 
@@ -111,10 +119,12 @@ export default class StarAnimation extends Canvas {
   mute(_isMuted) {
     if(_isMuted) {
       this.isMuted = false
-      this.$playerBtn.innerHTML = 'Ø'
+      this.$playerBtn.innerHTML = 'O'
+      this.sound.play()
     } else {
       this.isMuted = true
-      this.$playerBtn.innerHTML = 'O'
+      this.$playerBtn.innerHTML = 'Ø'
+      this.sound.pause()
     }
   }
 
